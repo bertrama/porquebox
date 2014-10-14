@@ -1,173 +1,72 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <parent>
-    <groupId>org.torquebox</groupId>
-    <artifactId>torquebox-modules-parent</artifactId>
-    <version>3.1.1</version>
+    <groupId>org.porquebox</groupId>
+    <artifactId>porquebox-modules-parent</artifactId>
+    <version>0.0.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>torquebox-core</artifactId>
+  <artifactId>porquebox-core</artifactId>
   <packaging>jar</packaging>
-  <name>TorqueBox Core Module</name>
+  <name>PorqueBox Core Module</name>
   <description />
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 
   <dependencies>
     <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>quercus</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>resin-kernel</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.projectodd</groupId>
       <artifactId>polyglot-core</artifactId>
-      <version>${version.polyglot}</version>
+      <version>1.20.0</version>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.projectodd</groupId>
-      <artifactId>yaml-schema</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-bootstrap</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>torquebox-core</artifactId>
-      <version>${project.version}</version>
-      <type>gem</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss</groupId>
-      <artifactId>jboss-vfs</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jruby</groupId>
-      <artifactId>jruby-complete</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
       <scope>provided</scope>
+      <version>3.1.4.GA</version>
     </dependency>
-
     <dependency>
       <groupId>org.jboss.as</groupId>
       <artifactId>jboss-as-ee</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-logging</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-naming</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-transactions</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-clustering-jgroups</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-connector</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.jboss.as</groupId>
       <artifactId>jboss-as-jmx</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
-
     <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-as-test-support</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.10</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.hornetq</groupId>
-      <artifactId>hornetq-core-client</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
   </dependencies>
-
-  <build>
-    <resources> 
-      <resource> 
-        <directory>src/main/resources</directory> 
-      </resource> 
-      <resource> 
-        <directory>src/main/java</directory> 
-        <filtering>true</filtering>
-        <includes>
-          <include>**/*.rb</include>
-          <include>**/*.properties</include>
-        </includes>
-      </resource> 
-      <resource> 
-        <directory>src/main/ruby</directory> 
-        <includes>
-          <include>**/*</include>
-        </includes>
-      </resource>
-    </resources> 
-    <plugins> 
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>assemble-module</id>
-            <phase>package</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>de.saumya.mojo</groupId>
-        <artifactId>jruby-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-build-info</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>jruby</goal>
-            </goals>
-            <configuration>
-              <file>./bin/generate-build-info.rb</file>
-              <jrubyJvmArgs>
-                -Dversion.torquebox=${project.version}
-                -Dversion.jbossas=${version.jbossas}
-                -Dversion.jruby=${version.jruby}
-                -Dversion.polyglot=${version.polyglot}
-                -Dmaven.repo=${settings.localRepository}
-              </jrubyJvmArgs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-module</id>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>

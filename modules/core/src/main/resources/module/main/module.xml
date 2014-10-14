@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="org.porquebox.core">
+  <resources>
+    <resource-root path="porquebox-core.jar"/>
+  </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="org.jboss.staxmapper"/>
+        <module name="org.jboss.as.controller"/>
+        <module name="org.jboss.as.deployment-repository"/>
+        <module name="org.jboss.as.jmx"/>
+        <module name="org.jboss.as.server"/>
+        <module name="org.jboss.modules"/>
+        <module name="org.jboss.msc"/>
+        <module name="org.jboss.logging"/>
+        <module name="org.jboss.vfs"/>
+        <module name="sun.jdk"/>
+        <module name="ibm.jdk"/>
+        <module name="com.caucho.quercus"/>
+        <module name="org.apache.commons.configuration"/>
+        <module name="org.projectodd.polyglot.core"/>
+        <module name="org.jboss.stdio"/>
+    </dependencies>
+</module>
+

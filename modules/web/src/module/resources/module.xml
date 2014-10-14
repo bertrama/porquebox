@@ -22,16 +22,16 @@
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
 
-<module xmlns="urn:jboss:module:1.0" name="org.torquebox.web">
+<module xmlns="urn:jboss:module:1.0" name="org.porquebox.web">
 
     <resources>
         <resource-root path="${project.artifactId}.jar"/>
-        <resource-root path="polyglot-web.jar"/>
+        <!-- <resource-root path="polyglot-web.jar"/> -->
     </resources>
 
     <exports>
       <include-set>
-        <path name="org/torquebox/web/servlet"/>
+        <path name="org/porquebox/web/servlet"/>
       </include-set>
     </exports>
 
@@ -51,7 +51,7 @@
         <module name="org.jboss.as.clustering.jgroups"/>
         <module name="org.projectodd.polyglot.core"/>
         <module name="org.projectodd.polyglot.web"/>
-        <module name="org.torquebox.core"/>
+        <module name="org.porquebox.core"/>
         <module name="org.slf4j"/>
 
     </dependencies>

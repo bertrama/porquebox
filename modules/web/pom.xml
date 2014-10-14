@@ -1,126 +1,181 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ JBoss, Home of Professional Open Source.
+  ~ Copyright 2010, Red Hat, Inc., and individual contributors
+  ~ as indicated by the @author tags. See the copyright.txt file in the
+  ~ distribution for a full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License as
+  ~ published by the Free Software Foundation; either version 2.1 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.torquebox</groupId>
-    <artifactId>torquebox-modules-parent</artifactId>
-    <version>3.1.1</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
+    <parent>
+      <groupId>org.porquebox</groupId>
+      <artifactId>porquebox-modules-parent</artifactId>
+      <version>0.0.0-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+    </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>torquebox-web</artifactId>
-  <packaging>jar</packaging>
-  <name>TorqueBox Web Module</name>
-  <description />
+    <groupId>org.porquebox</groupId>
+    <artifactId>porquebox-web</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>JBoss Application Server: Web Subsystem Artifact</name>
 
-  <dependencies>
+    
+    <properties>
+        <version.jboss.as>7.2.0.Final</version.jboss.as>
+        <version.junit>4.8.2</version.junit>
+        <module.name>org.porquebox.core</module.name>
+    </properties>
+    
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+
+    <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>org.jboss.as</groupId>
+              <artifactId>jboss-as-controller</artifactId>
+              <version>${version.jboss.as}</version>
+          </dependency>
+          <dependency>
+              <groupId>org.jboss.as</groupId>
+              <artifactId>jboss-as-server</artifactId>
+              <version>${version.jboss.as}</version>
+          </dependency>
+          <dependency>
+              <groupId>org.jboss.as</groupId>
+              <artifactId>jboss-as-subsystem-test</artifactId>
+              <version>${version.jboss.as}</version>
+              <scope>test</scope>
+          </dependency>
+          <dependency>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+              <scope>test</scope>
+              <version>${version.junit}</version>
+          </dependency>       
+      </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-controller</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-server</artifactId>
+            <scope>provided</scope>
+            <version>7.2.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-subsystem-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>       
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>quercus</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>resin-kernel</artifactId>
+      <version>1.0</version>
+    </dependency>
     <dependency>
       <groupId>org.projectodd</groupId>
       <artifactId>polyglot-core</artifactId>
-      <version>${version.polyglot}</version>
-      <scope>provided</scope>
+      <version>1.20.0</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.projectodd</groupId>
       <artifactId>polyglot-web</artifactId>
-      <version>${version.polyglot}</version>
+      <version>1.20.0</version>
       <scope>compile</scope>
     </dependency>
+<!--
     <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-bootstrap</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
+      <groupId>tomcat</groupId>
+       <artifactId>catalina</artifactId>
+       <version>5.5.23</version>
+    </dependency>
+-->
+    <dependency>
+      <groupId>org.porquebox</groupId>
+      <artifactId>porquebox-core</artifactId>
+      <version>1.0</version>
     </dependency>
     <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-core</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+<!--
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.10</version>
     </dependency>
     <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>torquebox-web</artifactId>
-      <version>${project.version}</version>
-      <type>gem</type>
+      <groupId>org.jboss.as</groupId>
+      <artifactId>jboss-as-ee</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss.web</groupId>
-      <artifactId>jbossweb</artifactId>
+      <groupId>org.jboss.as</groupId>
+      <artifactId>jboss-as-jmx</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
+-->
     <dependency>
       <groupId>org.jboss.as</groupId>
       <artifactId>jboss-as-web</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.as</groupId>
-      <artifactId>jboss-as-threads</artifactId>
+      <artifactId>jboss-as-clustering-jgroups</artifactId>
       <scope>provided</scope>
+      <version>7.2.0.Final</version>
     </dependency>
-    <dependency>
-      <groupId>org.jboss.spec.javax.servlet</groupId>
-      <artifactId>jboss-servlet-api_3.0_spec</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss</groupId>
-      <artifactId>jboss-vfs</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jruby</groupId>
-      <artifactId>jruby-complete</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.logging</groupId>
-      <artifactId>jboss-logging</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-ruby-test-support</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.torquebox</groupId>
-      <artifactId>torquebox-as-test-support</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins> 
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>assemble-module</id>
-            <phase>package</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>de.saumya.mojo</groupId>
-        <artifactId>jruby-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>install-module</id>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
+    </dependencies>
 </project>

@@ -37,6 +37,11 @@ public class PhpEnvironment {
         initializeEnv( runtime, request );
     }
 
+    public PhpEnvironment(QuercusEngine runtime, HttpServletRequest request, String path) throws IOException {
+        initializeEnv( runtime, request );
+        this.path = path;
+    }
+
     private void initializeEnv(QuercusEngine runtime, HttpServletRequest request) throws IOException {
         this.request = request;
         this.runtime = runtime;
@@ -98,6 +103,7 @@ public class PhpEnvironment {
     public HttpServletRequest getRequest() {
         return request;
     }
+
     public void close() {
         //explicitly close the inputstream, but leave the err stream open,
         //as closing that detaches it from the log forever!
@@ -110,10 +116,19 @@ public class PhpEnvironment {
             }
         }
     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public String setPath(String path) {
+        return this.path = path;
+    }
     
     private static final Logger log = Logger.getLogger( PhpEnvironment.class );
 
     private QuercusEngine runtime;
     private InputStream input = null;
     private HttpServletRequest request;
+    private String path = null;
 }

@@ -38,10 +38,15 @@ import org.jboss.msc.service.ServiceRegistry;
 import com.caucho.quercus.QuercusEngine;
 import org.projectodd.polyglot.web.servlet.HttpServletResponseCapture;
 import org.porquebox.core.component.ComponentResolver;
+import org.porquebox.core.component.ComponentEval;
 import org.porquebox.core.runtime.PhpRuntimePool;
 import org.porquebox.web.component.PhpApplicationComponent;
 import org.porquebox.web.php.PhpEnvironment;
 import org.porquebox.web.php.processors.PhpWebApplicationInstaller;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class PhpFilter implements Filter {
 
@@ -61,6 +66,8 @@ public class PhpFilter implements Filter {
             throw new ServletException( "Unable to obtain runtime pool: " + runtimePoolServiceName );
         }
         //preloadExec();
+        executePattern = filterConfig.getInitParameter("execute");
+        excludePattern = filterConfig.getInitParameter("exclude");
     }
 
     protected void preloadExec() throws ServletException {
@@ -98,7 +105,6 @@ public class PhpFilter implements Filter {
     }
 
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-
         if (((request.getPathInfo() == null) || (request.getPathInfo().equals( "/" ))) && !(request.getRequestURI().endsWith( "/" ))) {
             String redirectUri = request.getRequestURI() + "/";
             String queryString = request.getQueryString();
@@ -121,21 +127,30 @@ public class PhpFilter implements Filter {
 
         if (PhpWebApplicationInstaller.FIVE_HUNDRED_SERVLET_NAME.equals(servletName) ||
                 PhpWebApplicationInstaller.STATIC_RESROUCE_SERVLET_NAME.equals(servletName)) {
+            boolean defaultLocation = true;
             // Only hand off requests to Php if they're handled by one of the
-            // PorqueBox servlets
-            HttpServletResponseCapture responseCapture = new HttpServletResponseCapture( response );
-            try {
-                chain.doFilter( request, responseCapture );
-                if (responseCapture.isError()) {
-                    response.reset();
-                } else if (!request.getMethod().equals( "OPTIONS" )) {
-                    // Pass HTTP OPTIONS requests through to the Php application
-                    return;
-                }
-            } catch (ServletException e) {
-                log.error( "Error performing request", e );
+            if (matchExclude(request)) {
+                defaultLocation = true;
             }
-            doPhp( request, response );
+            else if (matchExecute(request)) {
+                defaultLocation = false;
+            }
+            else {
+                HttpServletResponseCapture responseCapture = new HttpServletResponseCapture( response );
+                try {
+                    chain.doFilter( request, responseCapture );
+                    if (responseCapture.isError()) {
+                        response.reset();
+                    } else if (!request.getMethod().equals( "OPTIONS" )) {
+                        // Pass HTTP OPTIONS requests through to the Php application
+                        return;
+                    }
+                } catch (ServletException e) {
+                  log.error( "Error performing request", e );
+                }
+                defaultLocation = true;
+            }
+            doPhp( request, response, defaultLocation );
         } else {
             // Bypass our Php stack entirely for any servlets defined in a
             // user's WEB-INF/web.xml
@@ -143,7 +158,7 @@ public class PhpFilter implements Filter {
         }
     }
 
-    protected void doPhp(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPhp(HttpServletRequest request, HttpServletResponse response, boolean defaultLocation) throws IOException, ServletException {
         PhpEnvironment phpEnv = null;
 
         QuercusEngine runtime = null;
@@ -151,7 +166,12 @@ public class PhpFilter implements Filter {
         try {
             runtime = this.runtimePool.borrowRuntime( "php" );
             phpApp = (PhpApplicationComponent) this.componentResolver.resolve( runtime );
-            phpEnv = new PhpEnvironment( runtime, request );
+            if ( defaultLocation ) {
+                phpEnv = new PhpEnvironment( runtime, request, ((ComponentEval) phpApp.getPhpComponent()).getLocation() );
+            }
+            else {
+                phpEnv = new PhpEnvironment( runtime, request, request.getPathTranslated().toString() );
+            }
             phpApp.call( phpEnv ).respond( response );
         // TODO: Find equivalnt for Quercus.
         /* }  catch (RaiseException e) {
@@ -173,10 +193,36 @@ public class PhpFilter implements Filter {
         }
     }
 
+    public String setExecutePattern(String pattern) {
+      return executePattern = pattern;
+    }
+
+    public String setExcludePattern(String pattern) {
+      return excludePattern = pattern;
+    }
+
+    public String getExecutePattern() {
+      return executePattern;
+    }
+
+    public String getExcludePattern() {
+      return excludePattern;
+    }
+
+    public boolean matchExclude(HttpServletRequest request) {
+      return Paths.get(request.getPathTranslated()).getFileName().toString().matches(excludePattern);
+    }
+
+    public boolean matchExecute(HttpServletRequest request) {
+      return Paths.get(request.getPathTranslated()).getFileName().toString().matches(executePattern);
+    }
+
     private static final Logger log = Logger.getLogger( PhpFilter.class );
 
     public static final String PHP_APP_DEPLOYMENT_INIT_PARAM = "porquebox.php.app.deployment.name";
 
     private ComponentResolver componentResolver;
     private PhpRuntimePool runtimePool;
+    private String executePattern;
+    private String excludePattern;
 }

@@ -100,10 +100,28 @@ public class PhpMetaData extends WebApplicationMetaData {
                 + this.execScript + "\n  host=" + getHosts() + "\n  context=" + getContextPath() + "\n  static=" + getStaticPathPrefix() + "]";
     }
 
+    public String setExecute(String str) {
+      return execute = str;
+    }
+
+    public String setExclude(String str) {
+      return exclude = str;
+    }
+
+    public String getExecute() {
+      return execute;
+    }
+
+    public String getExclude() {
+      return exclude;
+    }
+
     private String execScript;
     private String execScriptLocation = "index.php";
 
     private String phpRuntimePoolName;
     private String phpApplicationFactoryName;
     private String phpApplicationPoolName;
+    private String execute;
+    private String exclude;
 }

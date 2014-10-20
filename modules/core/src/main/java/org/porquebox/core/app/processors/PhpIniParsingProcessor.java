@@ -85,6 +85,8 @@ public class PhpIniParsingProcessor extends AbstractSplitIniParsingProcessor {
         if (profileApi != null) {
             runtimeMetaData.setProfileApi( (Boolean) profileApi );
         }
+        // TODO: Implement a way to do something to set php.ini values.
+        // Probably will be php.ini.<setting> = <value>
     }
 
     private static final Logger log = Logger.getLogger( "org.porquebox.core.app.php" );

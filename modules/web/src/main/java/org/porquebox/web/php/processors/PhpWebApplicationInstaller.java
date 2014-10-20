@@ -185,6 +185,16 @@ public class PhpWebApplicationInstaller implements DeploymentUnitProcessor {
         phpAppFactory.setParamValue( unit.getName() );
         initParams.add( phpAppFactory );
 
+        phpAppFactory = new ParamValueMetaData();
+        phpAppFactory.setParamName( "execute" );
+        phpAppFactory.setParamValue( phpAppMetaData.getExecute() );
+        initParams.add( phpAppFactory );
+
+        phpAppFactory = new ParamValueMetaData();
+        phpAppFactory.setParamName( "exclude" );
+        phpAppFactory.setParamValue( phpAppMetaData.getExclude() );
+        initParams.add( phpAppFactory );
+
         phpFilter.setInitParam( initParams );
 
         FiltersMetaData filters = webMetaData.getFilters();

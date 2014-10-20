@@ -52,7 +52,7 @@ public class PhpResponse {
         ComponentEval component = (ComponentEval) phpComponent.getPhpComponent();
 
         try {
-          QuercusPage page   =  ctx.parse(new FilePath(component.getLocation()));
+          QuercusPage page   =  ctx.parse( new FilePath(phpEnv.getPath()) );
           StringWriter string = new StringWriter();
           WriteStream stream = string.openWrite();
           HttpServletRequest request = phpEnv.getRequest();

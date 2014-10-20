@@ -61,9 +61,13 @@ public class WebIniParsingProcessor extends AbstractSplitIniParsingProcessor {
 
         phpAppMetaData.setContextPath( (String) webData.get( "context" ) );
         phpAppMetaData.setStaticPathPrefix( (String) webData.get( "static" ) );
+        phpAppMetaData.setExecute((String) webData.get("execute"));
+        phpAppMetaData.setExclude((String) webData.get("exclude"));
 
-        if (webData.get( "exec" ) != null) {
-            phpAppMetaData.setExecScriptLocation( (String) webData.get( "exec" ) );
+        // TODO: Provide sensible defaults for context (/), static (/), exclude, and execute.
+
+        if (webData.get( "default" ) != null) {
+            phpAppMetaData.setExecScriptLocation( (String) webData.get( "default" ) );
         }
 
         Object hosts = webData.get( "host" );

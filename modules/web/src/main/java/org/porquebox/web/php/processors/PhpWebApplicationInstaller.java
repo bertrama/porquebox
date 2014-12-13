@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -64,12 +64,12 @@ import org.porquebox.web.servlet.SendfileFilter;
  *    In: PhpApplicationMetaData, WebMetaData, JBossWebMetaData
  *   Out: WebMetaData, JBossWebMetaData
  * </pre>
- * 
+ *
  * Makes the JBossWebMetaData depend on the PhpApplicationPool, and sets up
  * Java servlet filters to delegate to the Php application
  */
 public class PhpWebApplicationInstaller implements DeploymentUnitProcessor {
-    
+
     /** Default session timeout (30 minutes). */
     public static final int DEFAULT_SESSION_TIMEOUT_MINUTES = 30;
 
@@ -162,7 +162,7 @@ public class PhpWebApplicationInstaller implements DeploymentUnitProcessor {
         int timeout = phpAppMetaData.getSessionTimeout();
 
         SessionConfigMetaData sessionConfig = new SessionConfigMetaData();
-        
+
         if (timeout < 0) {
             sessionConfig.setSessionTimeout( DEFAULT_SESSION_TIMEOUT_MINUTES );
         } else {

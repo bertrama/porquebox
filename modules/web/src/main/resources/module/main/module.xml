@@ -25,8 +25,8 @@
 <module xmlns="urn:jboss:module:1.0" name="org.porquebox.web">
 
     <resources>
-        <resource-root path="${project.artifactId}.jar"/>
-<!--        <resource-root path="polyglot-web.jar"/> -->
+        <resource-root path="porquebox-web.jar"/>
+        <resource-root path="polyglot-web.jar"/>
     </resources>
 
     <exports>
@@ -55,7 +55,10 @@
         <module name="com.caucho"/>
         <module name="com.caucho.quercus"/>
         <module name="org.slf4j"/>
-
+        <module name="org.jboss.stdio"/>
+        <module name="org.jboss.ironjacamar.api"/>
+        <module name="org.jboss.ironjacamar.impl"/>
+        <module name="org.jboss.ironjacamar.jdbcadapters"/>
     </dependencies>
 </module>
 

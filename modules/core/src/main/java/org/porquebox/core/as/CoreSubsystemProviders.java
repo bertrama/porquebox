@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -39,7 +39,7 @@ import org.jboss.dmr.ModelNode;
 import org.jboss.dmr.ModelType;
 
 public class CoreSubsystemProviders {
-    
+
     static final String RESOURCE_NAME = CoreSubsystemProviders.class.getPackage().getName() + ".LocalDescriptions";
 
     static final DescriptionProvider SUBSYSTEM = new DescriptionProvider() {
@@ -52,10 +52,10 @@ public class CoreSubsystemProviders {
             subsystem.get(HEAD_COMMENT_ALLOWED).set(true);
             subsystem.get(TAIL_COMMENT_ALLOWED).set(true);
             subsystem.get(NAMESPACE).set(Namespace.CURRENT.getUriString());
-            
+
             subsystem.get(CHILDREN, "injector", DESCRIPTION).set(bundle.getString("porquebox-core.injector"));
             subsystem.get(CHILDREN, "injector", REQUIRED).set(false);
-            
+
             return subsystem;
         }
     };
@@ -69,11 +69,11 @@ public class CoreSubsystemProviders {
             injector.get(HEAD_COMMENT_ALLOWED).set(true);
             injector.get(TAIL_COMMENT_ALLOWED).set(true);
             injector.get(NAMESPACE).set(Namespace.CURRENT.getUriString());
-            
+
             injector.get("attributes", "module", TYPE).set(ModelType.STRING);
             injector.get("attributes", "module", DESCRIPTION).set(bundle.getString("porquebox-core.injector"));
             injector.get("attributes", "module", REQUIRED).set(true);
-            
+
             return injector;
         }
     };
@@ -92,7 +92,7 @@ public class CoreSubsystemProviders {
             return operation;
         }
     };
-    
+
     static final DescriptionProvider INJECTOR_ADD = new DescriptionProvider() {
         @Override
         public ModelNode getModelDescription(Locale locale) {
@@ -108,7 +108,7 @@ public class CoreSubsystemProviders {
             return operation;
         }
     };
-    
+
     private static ResourceBundle getResourceBundle(Locale locale) {
         if (locale == null) {
             locale = Locale.getDefault();

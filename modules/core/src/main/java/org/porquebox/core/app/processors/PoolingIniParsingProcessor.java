@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -29,22 +29,22 @@ import org.porquebox.core.processors.AbstractSplitIniParsingProcessor;
 import org.porquebox.core.runtime.PoolMetaData;
 
 /**
- * 
+ *
  * Parsing deployer for {@code pooling.ini}.
- * 
+ *
  * <p>
  * This deployer looks for metadata files named exactly {@code pooling.ini},
  * which is expected to be an ini file describing the configuration of various
  * Php runtime interpreter pools.
  * </p>
- * 
+ *
  * <p>
  * The top-level of the ini file should be a hash, with the pool identifier as
  * the key. The value of each map may be the strings {@code global} or
  * {@code shared}, or another hash specifying {@code min} and {@code max} values
  * for the pool size.
  * </p>
- * 
+ *
  * <pre>
  *   pool_one: global
  *   pool_two: shared
@@ -52,9 +52,9 @@ import org.porquebox.core.runtime.PoolMetaData;
  *     min: 5
  *     max: 25
  * </pre>
- * 
+ *
  * @author Bob McWhirter <bmcwhirt@redhat.com>
- * 
+ *
  * @see PoolMetaData
  */
 public class PoolingIniParsingProcessor extends AbstractSplitIniParsingProcessor {

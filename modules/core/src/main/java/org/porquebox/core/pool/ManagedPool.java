@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -141,7 +141,7 @@ public class ManagedPool<T> implements Pool<T> {
     public void setDeferUntilRequested(boolean deferUntilRequested) {
         this.deferUntilRequested = deferUntilRequested;
     }
-    
+
     public int getSize() {
         return size();
     }
@@ -185,16 +185,16 @@ public class ManagedPool<T> implements Pool<T> {
     void waitForInitialFill() throws InterruptedException {
         this.poolManager.waitForMinimumFill();
     }
-    
+
     public void setNamespaceContextSelector(NamespaceContextSelector nsContextSelector) {
         this.nsContextSelector = nsContextSelector;
     }
-    
+
     public NamespaceContextSelector getNamespaceContextSelector() {
         return this.nsContextSelector;
     }
 
-    
+
     private Logger log = Logger.getLogger( this.getClass() );
 
     private SimplePool<T> pool;
@@ -202,5 +202,5 @@ public class ManagedPool<T> implements Pool<T> {
     private boolean deferUntilRequested = true;
     private boolean started = false;
     private NamespaceContextSelector nsContextSelector;
-    
+
 }

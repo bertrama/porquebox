@@ -64,7 +64,6 @@ public class PhpRuntimeMetaData {
   public RuntimeInitializer getRuntimeInitializer() {
     return initializer;
   }
-  
 
   public List<PhpLoadPathMetaData> appendLoadPath( PhpLoadPathMetaData append ) {
     loadPaths.add(append);

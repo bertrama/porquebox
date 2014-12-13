@@ -40,7 +40,7 @@ public class PorqueBoxPhpInstanceConfig {
   public PorqueBoxPhpInstanceConfig(QuercusEngine engine) {
     importContext(engine.getQuercus());
   }
-  
+
   private void importContext(QuercusContext context) {
     ini        = context.getIniMap(true);
     compile    = context.isCompile();
@@ -92,7 +92,7 @@ public class PorqueBoxPhpInstanceConfig {
   public String getCompileMode() {
     return compileMode;
   }
-  
+
   // TODO: Implement compileMode.
   private String compileMode  = "QuercusCompileMode";
   private ClassLoader loader  = null;

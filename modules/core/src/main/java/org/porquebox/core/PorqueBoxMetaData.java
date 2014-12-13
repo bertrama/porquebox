@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -37,13 +37,13 @@ import org.porquebox.core.processors.PorqueBoxIniParsingProcessor;
 
 /**
  * Generalized opaque holder of <code>porquebox.ini</code>-specified metadata.
- * 
+ *
  * <p>
  * Once <code>porquebox.yml</code> has been parsed, each top-level section and
  * its associated un-casted value block are added to the PorqueBoxMetaData for
  * use by other, more-specific deployment processors.
  * </p>
- * 
+ *
  * @see PorqueBoxYamlParsingProcessor
  * @see RubyYamlParsingProcessor
  * @see ApplicationYamlParsingProcessor
@@ -57,7 +57,7 @@ public class PorqueBoxMetaData {
 
     /**
      * Construct with parsed INI results.
-     * 
+     *
      * @param data The data, keyed by section name.
      */
     public PorqueBoxMetaData(Map<String, Object> data) {
@@ -79,7 +79,7 @@ public class PorqueBoxMetaData {
 
     /**
      * Normalize section names, since some drift has occurred.
-     * 
+     *
      * @param data
      * @return
      */
@@ -105,7 +105,7 @@ public class PorqueBoxMetaData {
     public Object getSection(String name) {
         return this.data.get( normalizeSectionName( name ) );
     }
-    
+
     @SuppressWarnings("unchecked")
     public String getApplicationRoot() {
         return findApplicationRoot( (Map<String, String>) getSection( "application" ) );

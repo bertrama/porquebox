@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -40,9 +40,9 @@ public class CoreExtension extends AbstractBootstrappableExtension {
     @Override
     public void initialize(ExtensionContext context) {
         log.info( "Initializing PorqueBox Core Subsystem" );
-        
+
         bootstrap();
-                
+
         final SubsystemRegistration registration = context.registerSubsystem( SUBSYSTEM_NAME, 1, 0 );
         final ManagementResourceRegistration subsystem = registration.registerSubsystemModel( CoreSubsystemProviders.SUBSYSTEM );
 
@@ -50,11 +50,11 @@ public class CoreExtension extends AbstractBootstrappableExtension {
                 CoreSubsystemAdd.ADD_INSTANCE,
                 CoreSubsystemProviders.SUBSYSTEM_ADD,
                 false );
-        
-        subsystem.registerOperationHandler(DESCRIBE, 
-                GenericSubsystemDescribeHandler.INSTANCE, 
-                GenericSubsystemDescribeHandler.INSTANCE, 
-                false, 
+
+        subsystem.registerOperationHandler(DESCRIBE,
+                GenericSubsystemDescribeHandler.INSTANCE,
+                GenericSubsystemDescribeHandler.INSTANCE,
+                false,
                 OperationEntry.EntryType.PRIVATE);
 
 

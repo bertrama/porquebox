@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -32,21 +32,21 @@ public class WebServices {
     public static final ServiceName PHP                  = WEB.append( "php" );
     public static final ServiceName WEB_CONNECTOR_CONFIG = WEB.append( "connector_config" );
     public static final ServiceName WEB_CONNECTOR_START  = WEB.append( "connector_start" );
-    
+
     public static ServiceName phpApplicationFactoryName(final String name) {
         return PHP.append("factory").append( name );
     }
     public static ServiceName phpApplicationPoolName(final String name) {
         return PHP.append("pool").append( name );
     }
-    
+
     public static ServiceName phpApplicationComponentResolver() {
         return ServiceName.of(  "php"  ).append(  "application"  );
     }
-    
+
     public static ServiceName phpApplicationComponentResolver(DeploymentUnit unit) {
         return unit.getServiceName().append( phpApplicationComponentResolver() );
     }
-    
+
 
 }

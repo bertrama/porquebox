@@ -77,6 +77,10 @@ import org.porquebox.core.runtime.processors.RuntimePoolInstaller;
 import org.porquebox.core.runtime.processors.RuntimeRestartProcessor;
 import org.porquebox.core.runtime.processors.PhpNamespaceContextSelectorProcessor;
 
+import org.porquebox.core.datasource.DataSourceServices;
+import org.porquebox.core.datasource.processors.DatabaseProcessor;
+import org.porquebox.core.datasource.processors.DatabaseIniParsingProcessor;
+
 
 class CoreSubsystemAdd extends AbstractBoottimeAddStepHandler {
 
@@ -151,9 +155,9 @@ class CoreSubsystemAdd extends AbstractBoottimeAddStepHandler {
         processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.STRUCTURE, 960, new PhpIniParsingProcessor() );
         processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.STRUCTURE, 970, new PhpApplicationDefaultsProcessor() );
         // TODO: implement the DataSourceServices / DatabaseIniParsingProcessor
-        // if (DataSourceServices.enabled) {
-            // processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.STRUCTURE, 980, new DatabaseIniParsingProcessor() );
-        // }
+        if (DataSourceServices.enabled) {
+            processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.STRUCTURE, 980, new DatabaseIniParsingProcessor() );
+        }
 
         // TODO: Implement the ApplicationExploder.
         // processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.PARSE, 100, new ApplicationExploder() );
@@ -169,7 +173,7 @@ class CoreSubsystemAdd extends AbstractBoottimeAddStepHandler {
         // TODO: Implement the PhpNamespaceContextSelectorProcessor.
         processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.POST_MODULE, 110, new PhpNamespaceContextSelectorProcessor() );
         // TODO: Implement the DatabaseProcessor.
-        // processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.POST_MODULE, 5000, new DatabaseProcessor() );
+        processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.POST_MODULE, 5000, new DatabaseProcessor() );
 
         processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.INSTALL, 0, new PhpRuntimeFactoryInstaller() );
         processorTarget.addDeploymentProcessor( CoreExtension.SUBSYSTEM_NAME, Phase.INSTALL, 10, new RuntimePoolInstaller() );

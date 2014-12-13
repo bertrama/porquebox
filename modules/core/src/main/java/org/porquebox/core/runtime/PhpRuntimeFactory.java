@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -45,7 +45,7 @@ import org.porquebox.core.util.PorqueBoxPhpInstanceConfig;
 
 /**
  * Default Php runtime interpreter factory implementation.
- * 
+ *
  * @author Bob McWhirter <bmcwhirt@redhat.com>
  */
 public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
@@ -63,7 +63,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Construct with an initializer and a preparer.
-     * 
+     *
      * @param initializer
      *            The initializer (or null) to use for each created runtime.
      * @param preparer
@@ -95,7 +95,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the interpreter classloader.
-     * 
+     *
      * @param classLoader
      *            The classloader.
      */
@@ -105,7 +105,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interpreter classloader.
-     * 
+     *
      * @return The classloader.
      */
     public ClassLoader getClassLoader() {
@@ -123,7 +123,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
     }
 
     /**
-     * 
+     *
      * @param debug
      *            Whether Php debug logging should be enabled or not
      */
@@ -133,7 +133,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the debug mode
-     * 
+     *
      * @return Whether debug logging is enabled or not
      */
     public boolean isDebug() {
@@ -141,7 +141,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
     }
 
     /**
-     * 
+     *
      * @param interactive
      *            Whether the runtime is marked as interactive or not
      */
@@ -151,7 +151,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interactive mode
-     * 
+     *
      * @return Whether the runtime is marked as interactive or not
      */
     public boolean isInteractive() {
@@ -160,7 +160,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the profile.api mode
-     * 
+     *
      * @return Whether the Php profile.api flag is enabled or not
      */
     public boolean isProfileApi() {
@@ -169,7 +169,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Sets the profile.api value for the Php environment.
-     * 
+     *
      * @param profileApi Whether the Php profile.api flag is enabled or not.
      */
     public void setProfileApi(boolean profileApi) {
@@ -178,7 +178,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the application-specific environment additions.
-     * 
+     *
      * @param applicationEnvironment
      *            The environment.
      */
@@ -188,7 +188,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the application-specific environment additions.
-     * 
+     *
      * @return The environment.
      */
     public Map<String, String> getApplicationEnvironment() {
@@ -270,7 +270,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
         double elapsedSeconds = Math.floor( (elapsedMillis * 1.0) / 10.0 ) / 100;
         log.info( "Created php runtime: " + getFullContext( contextInfo )
                 + ") in " + elapsedSeconds + "s" );
-    } 
+    }
 
     private void logRuntimeDestroyed(PorqueBoxPhpInstanceConfig config, String contextInfo) {
         log.info( "Destroyed php runtime: ("
@@ -316,7 +316,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
                 // ignorable since we're tearing down the instance anyway
             }
             // TODO: Is this equivilant to a tearDown()?
-            //instance.getQuercus().close();
+            instance.getQuercus().close();
             logRuntimeDestroyed( config, contextInfo );
         }
     }
@@ -381,7 +381,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the interpreter input stream.
-     * 
+     *
      * @param inputStream
      *            The input stream.
      */
@@ -391,7 +391,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interpreter input stream.
-     * 
+     *
      * @return The input stream.
      */
     public InputStream getInput() {
@@ -400,7 +400,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the interpreter output stream.
-     * 
+     *
      * @param outputStream
      *            The output stream.
      */
@@ -410,7 +410,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interpreter output stream.
-     * 
+     *
      * @return The output stream.
      */
     public PrintStream getOutput() {
@@ -419,7 +419,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the interpreter error stream.
-     * 
+     *
      * @param errorStream
      *            The error stream.
      */
@@ -429,7 +429,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interpreter error stream.
-     * 
+     *
      * @return The error stream.
      */
     public PrintStream getError() {
@@ -438,11 +438,11 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Set the interpreter load paths.
-     * 
+     *
      * <p>
      * Load paths may be either real filesystem paths or VFS URLs
      * </p>
-     * 
+     *
      * @param loadPaths
      *            The list of load paths.
      */
@@ -452,7 +452,7 @@ public class PhpRuntimeFactory implements InstanceFactory<QuercusEngine> {
 
     /**
      * Retrieve the interpreter load paths.
-     * 
+     *
      * @return The list of load paths.
      */
     public List<String> getLoadPaths() {

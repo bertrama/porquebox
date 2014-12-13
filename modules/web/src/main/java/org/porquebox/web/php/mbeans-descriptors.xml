@@ -6,43 +6,43 @@
          domain="porquebox"
          group="Host"
          type="org.porquebox.php.core.PorqueBoxHost">
-    
+
     <attribute name="appBase"
                description="The application root for this Host"
                type="java.lang.String"/>
-      
+
     <attribute name="configClass"
                description="The configuration class for contexts"
                type="java.lang.String"/>
-      
+
     <attribute name="managedResource"
                description="The managed resource this MBean is associated with"
                type="java.lang.Object"/>
-      
+
     <attribute name="name"
                description="Unique name of this Host"
                type="java.lang.String"/>
-      
+
     <attribute name="children"
                description="Object names of all children"
                type="[Ljavax.management.ObjectName;"/>
-      
+
     <attribute name="aliases"
                description="Host aliases"
                type="[Ljava.lang.String;"/>
-      
+
     <attribute name="realm"
                description="Associated realm."
                type="org.apache.catalina.Realm" />
-      
+
     <attribute name="valveNames"
                description="Return the MBean Names of the Valves associated with this Host"
                type="[Ljava.lang.String;"/>
-      
+
     <attribute name="valveObjectNames"
                description="Return the MBean ObjectNames of the Valves associated with this Host"
                type="[Ljavax.management.ObjectName;"/>
-      
+
     <operation name="addAlias"
                description="Add an alias name that should be mapped to this Host"
                impact="ACTION"
@@ -51,7 +51,7 @@
                  description="The alias to be added"
                  type="java.lang.String"/>
     </operation>
-    
+
     <operation name="findAliases"
                description="Return the set of alias names for this Host"
                impact="INFO"
@@ -64,7 +64,7 @@
                  description="Context to be added"
                  type="org.apache.catalina.Container"/>
     </operation>
-      
+
     <operation   name="removeAlias"
                description="Remove the specified alias name from the aliases for this  Host"
                impact="ACTION"
@@ -73,13 +73,13 @@
                  description="Alias name to be removed"
                  type="java.lang.String"/>
     </operation>
-    
+
     <operation name="start" description="Start" impact="ACTION" returnType="void" />
     <operation name="stop" description="Stop" impact="ACTION" returnType="void" />
     <operation name="init" description="Init" impact="ACTION" returnType="void" />
     <operation name="destroy" description="Destroy" impact="ACTION" returnType="void" />
   </mbean>
-  
+
   <!--
   <mbean name="StandardHostValve"
          description="Valve that implements the default basic behavior for the
@@ -87,7 +87,7 @@
          domain="Catalina"
          group="Valve"
          type="org.apache.catalina.core.StandardHostValve">
-    
+
     <attribute name="className"
                description="Fully qualified class name of the managed object"
                type="java.lang.String"

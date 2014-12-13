@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -56,7 +56,7 @@ import org.porquebox.core.runtime.SharedPhpRuntimePool;
  *    In: PoolMetaData, DeployerPhp
  *   Out: PhpRuntimePool
  * </pre>
- * 
+ *
  * Creates the proper PhpRuntimePool as specified by the PoolMetaData
  */
 public class RuntimePoolInstaller implements DeploymentUnitProcessor {
@@ -87,7 +87,7 @@ public class RuntimePoolInstaller implements DeploymentUnitProcessor {
 
         if (poolMetaData.isShared()) {
             SharedPhpRuntimePool pool = new SharedPhpRuntimePool();
-            
+
             pool.setName( poolMetaData.getName() );
             pool.setDeferUntilRequested( poolMetaData.isDeferUntilRequested() );
 
@@ -126,7 +126,7 @@ public class RuntimePoolInstaller implements DeploymentUnitProcessor {
 
         } else {
             DefaultPhpRuntimePool pool = new DefaultPhpRuntimePool();
-            
+
             pool.setName( poolMetaData.getName() );
             pool.setMinimumInstances( poolMetaData.getMinimumSize() );
             pool.setMaximumInstances( poolMetaData.getMaximumSize() );
@@ -147,14 +147,14 @@ public class RuntimePoolInstaller implements DeploymentUnitProcessor {
                     .addDependency( name )
                     .setInitialMode( Mode.PASSIVE )
                     .install();
-            
+
             String mbeanName = ObjectNameFactory.create( "porquebox.pools", new Hashtable<String, String>() {
                 {
                     put( "app", phpAppMetaData.getApplicationName() );
                     put( "name", poolMetaData.getName() );
                 }
             } ).toString();
-            
+
             ServiceName mbeanServiceName = name.append( "mbean" );
             MBeanRegistrationService<RestartablePhpRuntimePoolMBean> mbeanService = new MBeanRegistrationService<RestartablePhpRuntimePoolMBean>( mbeanName, mbeanServiceName );
             phaseContext.getServiceTarget().addService( mbeanServiceName, mbeanService )

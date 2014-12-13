@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -30,7 +30,7 @@ import org.porquebox.core.injection.analysis.Injectable;
 import org.jboss.logging.Logger;
 
 public class ComponentResolver {
-    
+
     public static AttachmentKey<AttachmentList<Injectable>> ADDITIONAL_INJECTABLES = AttachmentKey.createList( Injectable.class );
 
     public ComponentResolver(boolean alwaysReload) {
@@ -109,11 +109,11 @@ public class ComponentResolver {
     public Object[] getInitializeParams() {
         return this.initializeParams;
     }
-    
+
     public void setAlwaysReload(boolean alwaysReload) {
         this.alwaysReload = alwaysReload;
     }
-    
+
     public boolean isAlwaysReload() {
         return this.alwaysReload;
     }
@@ -129,11 +129,11 @@ public class ComponentResolver {
     public Class<? extends AbstractPhpComponent> getComponentWrapperClass() {
         return this.wrapperClass;
     }
-    
+
     public void setComponentWrapperOptions(Map<String,Object> componentWrapperOptions) {
         this.componentWrapperOptions = componentWrapperOptions;
     }
-    
+
     public Map<String,Object> getComponentWrapperOptions() {
         return this.componentWrapperOptions;
     }
@@ -145,7 +145,7 @@ public class ComponentResolver {
         wrappedComponent.setNamespaceContextSelector( this.namespaceContextSelector );
         return wrappedComponent;
     }
-    
+
     public void setNamespaceContextSelector(NamespaceContextSelector namespaceContextSelector) {
         this.namespaceContextSelector = namespaceContextSelector;
     }

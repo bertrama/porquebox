@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -45,7 +45,7 @@ public class PhpEnvironment {
     private void initializeEnv(QuercusEngine runtime, HttpServletRequest request) throws IOException {
         this.request = request;
         this.runtime = runtime;
-      
+
         String pathInfo = request.getRequestURI();
         if (pathInfo.startsWith( request.getContextPath() )) {
             pathInfo = pathInfo.substring( request.getContextPath().length() );
@@ -124,7 +124,7 @@ public class PhpEnvironment {
     public String setPath(String path) {
         return this.path = path;
     }
-    
+
     private static final Logger log = Logger.getLogger( PhpEnvironment.class );
 
     private QuercusEngine runtime;

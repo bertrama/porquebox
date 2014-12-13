@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -47,18 +47,18 @@ public class PorqueBoxPhpProcessor extends AbstractParsingProcessor {
 
         VirtualFile vFile = getMetaDataFile( root, PORQUEBOX_PHP_FILE );
 
-        
+
         if ( vFile != null ) {
             HashMap<String, Object> metaDataHash;
             File file;
-            
+
             try {
                 file = vFile.getPhysicalFile();
             } catch (IOException e) {
                 log.error( e );
                 return;
             }
-            
+
             try {
                 GlobalPhp engine = (GlobalPhp)phaseContext.getServiceRegistry().getRequiredService( CoreServices.GLOBAL_PHP ).getValue();
                 metaDataHash =  eval( engine, file );
@@ -67,7 +67,7 @@ public class PorqueBoxPhpProcessor extends AbstractParsingProcessor {
                 log.error( "Failed to load '" + file.getAbsolutePath() + "':"  );
                 log.error( "  " + e.getMessage() );
                 log.error( "============================================================" );
-                
+
                 throw new DeploymentUnitProcessingException( "Failed to load " + file.getAbsolutePath(), e );
             }
             PorqueBoxMetaData metaData = new PorqueBoxMetaData( metaDataHash );

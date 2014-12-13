@@ -50,7 +50,7 @@ public class GlobalPhp extends AsyncService<GlobalPhp> implements GlobalPhpMBean
     public void stop(StopContext context) {
         // TODO: figure out what to do on the stop request.  Maybe this?
         // this.runtime.tearDown( false );
-        // this.runtime.getQuercus().close();
+        this.runtime.getQuercus().close();
     }
 
     public Object evaluate(String script) throws Exception {

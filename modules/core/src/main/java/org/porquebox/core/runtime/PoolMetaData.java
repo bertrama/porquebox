@@ -1,16 +1,16 @@
 /*
  * Copyright 2008-2013 Red Hat, Inc, and individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -26,7 +26,7 @@ import org.jboss.as.server.deployment.AttachmentList;
 
 /**
  * Ruby interpreter pool configuration.
- * 
+ *
  * <p>
  * Pools may be created as non-shared, shared, or backed by the global
  * interpreter. These three types of pools are ranked from most memory-intensive
@@ -34,25 +34,25 @@ import org.jboss.as.server.deployment.AttachmentList;
  * Threadsafety of the client application should be considered when configuring
  * a pool.
  * </p>
- * 
+ *
  * <p>
  * A non-shared pool allows exclusive access to each pooled interpreter to
  * exactly one client at a time. A non-shared pool has minimum and maximum size
  * settings.
  * </p>
- * 
+ *
  * <p>
  * A shared pool is a pool backed by a single interpreter, shared among many
  * client simultaneously. The pool owns the interpreter.
  * </p>
- * 
+ *
  * <p>
  * A global pool is backed by a single global interpreter, possibly shared with
  * other global pools.
  * </p>
- * 
+ *
  * @author Bob McWhirter <bmcwhirt@redhat.com>
- * 
+ *
  */
 public class PoolMetaData {
 
@@ -106,10 +106,10 @@ public class PoolMetaData {
          }
         return null;
     }
-    
+
     /**
      * Retrieve the name of the pool.
-     * 
+     *
      * @return The name of the pool.
      */
     public String getName() {
@@ -118,7 +118,7 @@ public class PoolMetaData {
 
     /**
      * Set the minimum size of the pool.
-     * 
+     *
      * @param minimumSize
      *            The minimum size of the pool.
      */
@@ -129,7 +129,7 @@ public class PoolMetaData {
 
     /**
      * Retrieve the minimum size of the pool.
-     * 
+     *
      * @return The minimum size of the pool.
      */
     public int getMinimumSize() {
@@ -138,7 +138,7 @@ public class PoolMetaData {
 
     /**
      * Set the maximum size of the pool.
-     * 
+     *
      * @param maximumSize
      *            The maximum size of the pool.
      */
@@ -149,7 +149,7 @@ public class PoolMetaData {
 
     /**
      * Retrieve the maximum size of the pool.
-     * 
+     *
      * @return The maximum size of the pool.
      */
     public int getMaximumSize() {
@@ -168,7 +168,7 @@ public class PoolMetaData {
     /**
      * Determine if this pool is configured for shared access to a single
      * instance.
-     * 
+     *
      * @return {@code true} if so, otherwise {@code false}.
      */
     public boolean isShared() {
@@ -177,7 +177,7 @@ public class PoolMetaData {
 
     /**
      * Set the optional instance-factory name.
-     * 
+     *
      * @param instanceFactoryName
      *            The name of the instance factory to use if non-global.
      */
@@ -187,7 +187,7 @@ public class PoolMetaData {
 
     /**
      * Retrieve the instance-factory name.
-     * 
+     *
      * @return The name of instance factory to use if non-global.
      */
     public String getInstanceFactoryName() {
@@ -196,7 +196,7 @@ public class PoolMetaData {
 
     /**
      * Set the instance name for shared pools.
-     * 
+     *
      * @param instanceName
      *            The instance name for shared pools.
      */
@@ -206,7 +206,7 @@ public class PoolMetaData {
 
     /**
      * Retrieve the instance name for shared pools.
-     * 
+     *
      * @return The instance name for shared pools.
      */
     public String getInstanceName() {
@@ -225,14 +225,14 @@ public class PoolMetaData {
     /**
      * Determine if this pool is configured for shared access to the global
      * instance.
-     * 
+     *
      * @return {@code true} if so, otherwise {@code false}.
      */
     public boolean isGlobal() {
         return (this.poolType == PoolType.GLOBAL);
     }
 
-    
+
     public boolean isDeferUntilRequested() {
         return deferUntilRequested;
     }
@@ -265,6 +265,6 @@ public class PoolMetaData {
     private String instanceFactoryName;
 
     private String instanceName;
-    
+
     private boolean deferUntilRequested = true;
 }

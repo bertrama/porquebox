@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.jboss.as.server.deployment.AttachmentKey;
 import org.jboss.as.server.deployment.AttachmentList;
+import org.jboss.logging.Logger;
 
 public class DatabaseMetaData {
 
@@ -47,4 +48,5 @@ public class DatabaseMetaData {
 
     private String configurationName;
     private Map<String, Object> config;
+    private static final Logger log = Logger.getLogger("org.porquebox.core.datasource");
 }

@@ -29,6 +29,7 @@ import org.jboss.msc.service.StartContext;
 import org.jboss.msc.service.StopContext;
 import org.jboss.msc.value.InjectedValue;
 import com.caucho.quercus.QuercusEngine;
+import com.caucho.quercus.QuercusContext;
 import org.projectodd.polyglot.core.AsyncService;
 import org.porquebox.core.datasource.db.Adapter;
 import org.porquebox.core.runtime.PhpRuntimeFactory;
@@ -57,25 +58,19 @@ public class DriverService extends AsyncService<Driver> {
     }
 
     protected Driver instantiateDriver() throws Exception {
-        QuercusEngine php = this.runtimeInjector.getValue();
-
+        QuercusEngine engine = this.runtimeInjector.getValue();
+        QuercusContext php = engine.getQuercus();
+        // The ruby stuff triggers a require 'xyz'.  And the JRuby class loader can handle that.
+        // Quercus doesn't seem to have nearly a rich enough feature set to do the same.
         synchronized (php) {
-/*
-            php.setCurrentDirectory( this.applicationDirectory );
-
-            RuntimeHelper.require( php, "bundler/setup" );
-            RuntimeHelper.require( php, this.adapter.getRequirePath() );
-
             String phpDriverClassName = this.adapter.getPhpDriverClassName();
+            Driver driver = null;
             if (phpDriverClassName != null) {
-                RuntimeHelper.evalScriptlet( php, phpDriverClassName + ".load_driver if " + phpDriverClassName + ".respond_to?(:load_driver)" );
+                ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+                final Class<? extends Driver> driverClass = classLoader.loadClass( this.adapter.getDriverClassName() ).asSubclass( Driver.class );
+                driver = driverClass.newInstance();
             }
-
-            ClassLoader classLoader = php.getJPhpClassLoader();
-            final Class<? extends Driver> driverClass = classLoader.loadClass( this.adapter.getDriverClassName() ).asSubclass( Driver.class );
-            Driver driver = driverClass.newInstance();
-*/
-            return null;
+            return driver;
         }
     }
 

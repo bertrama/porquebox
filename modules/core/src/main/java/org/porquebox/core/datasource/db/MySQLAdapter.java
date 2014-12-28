@@ -26,6 +26,7 @@ import org.jboss.jca.common.api.metadata.common.Extension;
 import org.jboss.jca.common.api.metadata.ds.Validation;
 import org.jboss.jca.common.api.validator.ValidateException;
 import org.jboss.jca.common.metadata.ds.ValidationImpl;
+import org.jboss.logging.Logger;
 import org.porquebox.core.datasource.DatabaseMetaData;
 
 public class MySQLAdapter extends AbstractAdapter {
@@ -80,4 +81,5 @@ public class MySQLAdapter extends AbstractAdapter {
                 exceptionSorter );
     }
 
+    private static final Logger log = Logger.getLogger("org.porquebox.core.datasource.db");
 }

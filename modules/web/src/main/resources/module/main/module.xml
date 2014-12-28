@@ -53,7 +53,8 @@
         <module name="org.projectodd.polyglot.web"/>
         <module name="org.porquebox.core"/>
         <module name="com.caucho"/>
-        <module name="com.caucho.quercus"/>
+        <module name="com.caucho.quercus" export="true"/>
+        <module name="com.mysql.jdbc" export="true"/>
         <module name="org.slf4j"/>
         <module name="org.jboss.stdio"/>
         <module name="org.jboss.ironjacamar.api"/>

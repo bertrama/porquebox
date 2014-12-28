@@ -34,6 +34,7 @@ import org.jboss.msc.value.ImmediateValue;
 import org.projectodd.polyglot.core.util.DeploymentUtils;
 import org.porquebox.core.app.PhpAppMetaData;
 import org.porquebox.core.as.CoreServices;
+import org.jboss.logging.Logger;
 
 public class PhpNamespaceContextSelectorProcessor implements DeploymentUnitProcessor {
 
@@ -77,5 +78,7 @@ public class PhpNamespaceContextSelectorProcessor implements DeploymentUnitProce
     public void undeploy(DeploymentUnit context) {
 
     }
+
+    private static final Logger log = Logger.getLogger( "org.porquebox.core.runtime.processors" );
 
 }

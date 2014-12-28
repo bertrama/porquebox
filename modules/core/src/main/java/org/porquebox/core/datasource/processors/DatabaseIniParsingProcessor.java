@@ -60,8 +60,10 @@ public class DatabaseIniParsingProcessor extends AbstractSplitIniParsingProcesso
     @Override
     @SuppressWarnings("unchecked")
     protected void parse(DeploymentUnit unit, Object data) throws Exception {
-        StackTraceElement[] st = Thread.currentThread().getStackTrace();
-        DatabaseMetaData md = new DatabaseMetaData( "configuration", (Map<String, Object>) data);
+        Map<String, Object> configuration = (Map<String, Object>) data;
+        configuration.put("xa", (Object) true);
+
+        DatabaseMetaData md = new DatabaseMetaData( "configuration", configuration );
         unit.addToAttachmentList( DatabaseMetaData.ATTACHMENTS, md );
     }
 
